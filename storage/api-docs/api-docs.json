@@ -1,0 +1,242 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Rest API",
+        "description": "Laravel project to create a UAS project developing Rest API with L5 Swagger OpenApi",
+        "contact": {
+            "name": "Yobel Kimtoputra",
+            "email": "yobel.422023001@civitas.ukrida.ac.id"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/tumbler": {
+            "get": {
+                "tags": [
+                    "tumbler"
+                ],
+                "description": "Display a listing of items",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tumbler"
+                ],
+                "summary": "Store a newly created item",
+                "operationId": "store",
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Tumbler"
+                            },
+                            "example": {
+                                "tumbler_name": "Elegan Tumbler",
+                                "description": "Tumbler elegan dengan sentuhan warna emas yang menawan",
+                                "price": 95000
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid Input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tumbler/{id}": {
+            "get": {
+                "tags": [
+                    "tumbler"
+                ],
+                "summary": "Display the specified items",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of item that needs to be displayed",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "item Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid Input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tumbler"
+                ],
+                "summary": "Update the specified items",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of item that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Tumbler"
+                            },
+                            "example": {
+                                "tumbler_name": "Elegan Tumbler",
+                                "description": "Tumbler elegan dengan sentuhan warna emas yang menawan",
+                                "price": 95000
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "404": {
+                        "description": "item Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid Input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tumbler"
+                ],
+                "summary": "Remove the specified items",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of item that needs to be removed",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "item Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid Input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Tumbler": {
+                "title": "Tumbler model",
+                "description": "Tumbler model",
+                "required": [
+                    "title",
+                    "author"
+                ],
+                "xml": {
+                    "name": "Tumbler"
+                }
+            }
+        }
+    }
+}
