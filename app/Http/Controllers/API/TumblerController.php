@@ -61,7 +61,8 @@ class TumblerController extends Controller
      *                      "description": "Tumbler elegan dengan sentuhan warna emas yang menawan",
      *                      "price": 95000}
      *         ),
-     *     )
+     *     ),
+     *     security={{"passport_token_ready":{},"passport":{}}}
      * )
      */
     public function store(Request $request)
@@ -165,7 +166,8 @@ class TumblerController extends Controller
      *                      "description": "Tumbler elegan dengan sentuhan warna emas yang menawan",
      *                      "price": 95000}
      *         ),
-     *     )
+     *     ),
+     *     security={{"passport_token_ready":{},"passport":{}}}
      * )
      */
     public function update(Request $request, $id)
@@ -220,7 +222,8 @@ class TumblerController extends Controller
      *             type="integer",
      *             format="int64"
      *         )
-     *     )
+     *     ),
+     *     security={{"passport_token_ready":{},"passport":{}}}
      * )
      */
     public function destroy($id)
