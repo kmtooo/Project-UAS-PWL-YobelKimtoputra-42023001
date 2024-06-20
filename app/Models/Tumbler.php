@@ -36,6 +36,8 @@ class Tumbler extends Model
         'created_by',
         'updated_by',
         'updated_at',
+        'publication_year',
+        'pict',
     ];
     public function data_adder(){
         return $this->belongsTo(User::class, 'created_by', 'id');

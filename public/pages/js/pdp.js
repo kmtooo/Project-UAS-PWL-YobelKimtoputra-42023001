@@ -8,9 +8,9 @@ function getDataByWindowUrlKey(){
       console.log('[DATA] response..',response.data);
       let template = '';
 
-      $('.product-img-main-href').attr('href',response.data.cover);
-      $('.product-img-main-src').attr('src',response.data.cover);
-      $('#product-name').html(response.data.title);
+      $('.product-img-main-href').attr('href',response.data.pict);
+      $('.product-img-main-src').attr('src',response.data.pict);
+      $('#product-name').html(response.data.tumbler_name);
       $('#product-price').html('IDR '+parseFloat(response.data.price).toLocaleString());
       $('#product-description').html(response.data.description);
       $('#product-author').html(response.data.author);
@@ -34,7 +34,7 @@ function getDataByWindowUrlKey(){
           $('.product-add-to-cart-is-disabled').show();
         }
         // tag
-        let collectionOfTag = ['Book','EBook','Best Seller','Fiction','Education','Literature','Classics','Real Event','Young Adult','Religion','Health','Comic','Horror','Poem','Filmed','Encyclopedia','In English','In Indonesian'];
+        let collectionOfTag = ['Best Seller','Kids Tumbler', 'Elegan Tumbler', 'Classic Basic Tumbler'];
         let selectedTags    = collectionOfTag.sort(() => .5 - Math.random()).slice(0, 4); // only get 4, randomly, from collectionOfTag
         template = '';
         for (let index = 0; index < selectedTags.length; index++) {

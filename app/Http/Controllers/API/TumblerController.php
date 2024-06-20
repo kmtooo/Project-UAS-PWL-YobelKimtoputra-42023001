@@ -22,63 +22,63 @@ class TumblerController extends Controller
      * @OA\Get(
      *     path="/api/tumbler",
      *     tags={"tumbler"},
-     *     description="Display a listing of items",
+     *     summary="Display a listing of the items",
      *     operationId="index",
      *     @OA\Response(
      *         response=200,
      *         description="successful",
      *         @OA\JsonContent()
      *     ),
-     *     @OA\Parameter(
-     *         name="_page",
-     *         in="query",
-     *         description="current page",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *             example=1
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="_limit",
-     *         in="query",
-     *         description="max item in a page",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64",
-     *             example=10
-     *         )
-     *     ),
-     *      @OA\Parameter(
-     *         name="_search",
-     *         in="query",
-     *         description="word to search",
-     *         required=false,
-     *         @OA\Schema(
-     *             type="string",
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="_publisher",
-     *         in="query",
-     *         description="search by publisher like name",
-     *         required=false,
-     *         @OA\Schema(
-     *             type="string",
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         name="_sort_by",
-     *         in="query",
-     *         description="word to search",
-     *         required=false,
-     *         @OA\Schema(
-     *             type="string",
-     *             example="latest"
-     *         )
-     *     ),
+     *  @OA\Parameter(
+     *      name="_page",
+     *      in="query",
+     *      description="current page",
+     *      required=true,
+     *      @OA\Schemas(
+     *          type="integer",
+     *          format="int64",
+     *          example=1
+     *      )
+     *  ),
+     *  @OA\Parameter(
+     *      name="_limit",
+     *      in="query",
+     *      description="max item in a page",
+     *      required=true,
+     *      @OA\Schemas(
+     *          type="integer",
+     *          format="int64",
+     *          example=10
+     *      )
+     *  ),
+     *  @OA\Parameter(
+     *      name="_search",
+     *      in="query",
+     *      description="word to search",
+     *      required=false,
+     *      @OA\Schemas(
+     *          type="string"
+     *      )
+     *  ),
+     *  @OA\Parameter(
+     *      name="_publisher",
+     *      in="query",
+     *      description="search by publisher like name",
+     *      required=false,
+     *      @OA\Schemas(
+     *          type="string"
+     *      )
+     *  ),
+     *  @OA\Parameter(
+     *      name="_sort_by",
+     *      in="query",
+     *      description="word to search",
+     *      required=false,
+     *      @OA\Schemas(
+     *          type="integer",
+     *          example="latest"
+     *      )
+     *  ),
      * )
      */
     public function index(Request $request)
@@ -88,13 +88,13 @@ class TumblerController extends Controller
             $page                 = $data['filter']['_page']  = (@$data['filter']['_page'] ? intval($data['filter']['_page']) : 1);
             $limit                = $data['filter']['_limit'] = (@$data['filter']['_limit'] ? intval($data['filter']['_limit']) : 1000);
             $offset               = ($page?($page-1)*$limit:0);
-            $data['products']     = Book::whereRaw('1 = 1');
+            $data['products']     = tumbler::whereRaw('1 = 1');
             
             if($request->get('_search')){
-                $data['products'] = $data['products']->whereRaw('(LOWER(title) LIKE "%'.strtolower($request->get('_search')).'%" OR LOWER(author) LIKE "%'.strtolower($request->get('_search')).'%")');
+                $data['products'] = $data['products']->whereRaw('(LOWER(tumbler_name) LIKE "%'.strtolower($request->get('_search')).'%")');
             }
-            if($request->get('_publisher')){
-                $data['products'] = $data['products']->whereRaw('LOWER(publisher) = "'.strtolower($request->get('_publisher')).'"');
+            if($request->get('_type')){
+                $data['products'] = $data['products']->whereRaw('LOWER(type) = "'.strtolower($request->get('_type')).'"');
             }
             if($request->get('_sort_by')){
             switch ($request->get('_sort_by')) {
@@ -105,11 +105,11 @@ class TumblerController extends Controller
                 case 'latest_added':
                 $data['products'] = $data['products']->orderBy('created_at','DESC');
                 break;
-                case 'title_asc':
-                $data['products'] = $data['products']->orderBy('title','ASC');
+                case 'name_asc':
+                $data['products'] = $data['products']->orderBy('tumbler_name','ASC');
                 break;
-                case 'title_desc':
-                $data['products'] = $data['products']->orderBy('title','DESC');
+                case 'name_desc':
+                $data['products'] = $data['products']->orderBy('tumbler_name','DESC');
                 break;
                 case 'price_asc':
                 $data['products'] = $data['products']->orderBy('price','ASC');
@@ -129,8 +129,9 @@ class TumblerController extends Controller
 
         } catch(\Exception $exception) {
             throw new HttpException(400, "Invalid data : {$exception->getMessage()}");
-        }
     }
+}
+
 
     /**
      * @OA\Post(
@@ -165,7 +166,7 @@ class TumblerController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'tumbler_name' => 'required|unique:tumbler',
+                'tumbler_name' => 'required|string|max:255',
             ]);
             if ($validator->fails()) {
                 throw new HttpException(400, $validator->messages()->first());
@@ -275,7 +276,7 @@ class TumblerController extends Controller
 
         try {
             $validator = Validator::make($request->all(), [
-                'tumbler_name' => 'required|unique:tumbler',
+                'tumbler_name' => 'required|string|max:255',
             ]);
             if ($validator->fails()) {
                 throw new HttpException(400, $validator->messages()->first());

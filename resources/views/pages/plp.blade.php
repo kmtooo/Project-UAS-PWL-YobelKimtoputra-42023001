@@ -10,41 +10,21 @@
                 <div class="col-lg-3 col-md-3 order-md-1 order-2  small-mt__40">
                     <div class="shop-widget widget-shop-publishers mt-3">
                         <div class="product-filter">
-                            <h6 class="mb-20">Publishers</h6>
-                            <select class="_filter form-select form-select-sm" name="_publisher" onchange="getData()">
+                            <h6 class="mb-20">Brand</h6>
+                            <select class="_filter form-select form-select-sm" name="description" onchange="getData()">
                                 <option value="" selected>All</option>
-                                <option value="putnam">Putnam</option>
-                                <option value="harriman house">Harriman House</option>
-                                <option value="balai pustaka">Balai Pustaka</option>
-                                <option value="lentera dipantara">Lentera Dipantara</option>
-                                <option value="pan books">Pan Books</option>
-                                <option value="firefly books">Firefly Books</option>
-                                <option value="gramedia">Gramedia</option>
-                                <option value="scholastic">Scholastic</option>
-                                <option value="harper">Harper</option>
-                                <option value="dk children">DK Children</option>
-                                <option value="bentang pustaka">Bentang Pustaka</option>
-                                <option value="gagas media">Gagas Media</option>
-                                <option value="grasindo">Grasindo</option>
-                                <option value="marjin kiri">Marjin Kiri</option>
+                                <option value="tupperware">tupperware</option>
+                                <option value="bolde">bolde</option>
+                                <option value="klean">klean</option>
+                                <option value="lock n lock">lock n lock</option>
+                                <option value="mosh">mosh</option>
+                                <option value="stanley">stanley</option>
+                                <option value="zojirushi">zojirushi</option>
+                                <option value="corkcicle">corkcicle</option>
+                                <option value="ecentio">ecentio</option>
                             </select>
                         </div>
                     </div>
-                    <!-- Product Filter -->
-                    <div class="shop-widget widget-color">
-                        <div class="product-filter">
-                            <h6 class="mb-20">Color</h6>
-                            <ul class="widget-nav-list">
-                                <li><a href="#"><span class="swatch-color black"></span></a></li>
-                                <li><a href="#"><span class="swatch-color green"></span></a></li>
-                                <li><a href="#"><span class="swatch-color grey"></span></a></li>
-                                <li><a href="#"><span class="swatch-color red"></span></a></li>
-                                <li><a href="#"><span class="swatch-color white"></span></a></li>
-                                <li><a href="#"><span class="swatch-color yellow"></span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Product Filter -->
                     <div class="shop-widget">
                         <div class="product-filter widget-price">
                             <h6 class="mb-20">Price</h6>
@@ -62,24 +42,11 @@
                         <div class="product-filter">
                             <h6 class="mb-20">Tags</h6>
                             <div class="blog-tagcloud">
-                                <a href="#" class="selected">Book</a>
-                                <a href="#">EBook</a>
+                                <a href="#" class="selected">Tumbler</a>
                                 <a href="#">Best Seller</a>
-                                <a href="#">Fiction</a>
-                                <a href="#">Education</a>
-                                <a href="#">Literature</a>
-                                <a href="#">Classics</a>
-                                <a href="#">Real Event</a>
-                                <a href="#">Young Adult</a>
-                                <a href="#">Religion</a>
-                                <a href="#">Health</a>
-                                <a href="#">Comic</a>
-                                <a href="#">Horror</a>
-                                <a href="#">Poem</a>
-                                <a href="#">Filmed</a>
-                                <a href="#">Encyclopedia</a>
-                                <a href="#">In English</a>
-                                <a href="#">In Indonesian</a>
+                                <a href="#">Kids Tumbler</a>
+                                <a href="#">Elegan Tumbler</a>
+                                <a href="#">Classic Basic Tumbler</a>
                             </div>
                         </div>
                     </div>
@@ -96,8 +63,8 @@
                                 </div>
                                 <div class="shop-toolbar__item ">
                                     <select class="_filter form-select form-select-sm" name="_sort_by" onchange="getData()">
-                                        <option value="title_asc">Sort by A-Z</option>
-                                        <option value="title_desc">Sort by Z-A</option>
+                                        <option value="tumbler_name_asc">Sort by A-Z</option>
+                                        <option value="tumbler_name_desc">Sort by Z-A</option>
                                         <option value="latest_publication">Sort by latest</option>
                                         <option value="latest_added">Sort by time added</option>
                                         <option value="price_asc">Sort by price: low to high</option>
@@ -111,7 +78,7 @@
                                 <div class="header-search-box">
                                     <input  class="_filter search-field" name="_search" type="text" 
                                             onkeypress="getDataOnEnter(event)"
-                                            placeholder="Search by title or author...">
+                                            placeholder="Search by tumbler name">
                                     <button class="search-icon"><i class="icon-magnifier"></i></button>
                                 </div>
                             </div>
